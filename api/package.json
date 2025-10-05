@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "busboy": "^1.6.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "multer": "^2.0.2",
     "multiparty": "^4.2.3"

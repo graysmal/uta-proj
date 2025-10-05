@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const busboy = require('busboy');
 
+
 const router = express.Router();
 
 function executeCommand(command) {
@@ -36,6 +37,7 @@ router.get('/url-to-mp3', async (req, res) => {
 
         // Return mp3
         const filePath = path.join(__dirname, `../files/${file_name}.mp3`);
+        res.setHeader('Content-Type', 'audio/mpeg');
         res.sendFile(filePath);
     }
     catch (err) {
@@ -159,7 +161,7 @@ router.get('/youtube-to-midi', async (req, res) => {
 
     try {
         // Download audio as mp3
-        await executeCommand(`yt-dlp -x --audio-format mp3 -o "./files/${fileName}.mp3" --proxy "socks5h://100.102.74.90:1080" ${url}`);
+        await executeCommand(`yt-dlp -x --audio-format mp3 -o "./files/${fileName}.mp3" ${url}`);
         console.log(`Downloaded MP3 to ${mp3Path}`);
 
         // Convert mp3 to midi using the existing script
@@ -173,6 +175,7 @@ router.get('/youtube-to-midi', async (req, res) => {
         }
 
         // Stream the resulting MIDI file and optionally cleanup after it's sent
+        res.setHeader('Content-Type', 'audio/mpeg');
         res.sendFile(midPath, (err) => {
             if (err) {
                 console.error('Error sending MIDI file:', err);

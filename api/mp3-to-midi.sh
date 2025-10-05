@@ -13,7 +13,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VENV_ACTIVATE="/root/uta-proj/.venv/bin/activate"
+VENV_ACTIVATE="../.venv/bin/activate"
 
 if [[ "$#" -ne 1 ]]; then
     echo "Usage: $0 <output_mid_path>" >&2

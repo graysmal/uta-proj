@@ -4,6 +4,7 @@ import Visualizer from "./Visualizer.jsx"
 export default function App(){
     const [midi, setMIDI] = useState(null);
     const [showVisualizer, setShowVisualizer] = useState(false);
+    const [loading, setLoading] = useState(false);
     const toggleVisualizer = () => {
         setShowVisualizer(prevIsToggled => !prevIsToggled);
     };
@@ -11,8 +12,9 @@ export default function App(){
 
     const handleURL = async (e) => {
         e.preventDefault();
+        setLoading(true);
         console.log(url_input);
-        const response = await fetch("http://localhost:3000/url-to-mp3", {
+        const response = await fetch("http://162.243.246.187:3000/youtube-to-midi", {
             method: 'GET',
             headers: {
                 'url': url_input
@@ -20,21 +22,34 @@ export default function App(){
         });
         const blob = await response.blob();
         setMIDI(blob);
+        setLoading(false);
         setShowVisualizer(true);
     };
+    if (loading) {
+        return (
+            <div className="h-screen flex flex-col justify-center items-center text-4xl font-extrabold text-blue-900">
+                <div className="flex flex-col justify-center">
+                    <img width={500} className={"pb-16 top-1 drop-shadow-lg"} src={"/pianoani.png"} />
+                </div>
+                <p>Loading...</p>
+            </div>
+        )
+    }
     if (showVisualizer) {
         return (
             <div>
-                <audio src={"midi"} controls ></audio>
                 <button onClick={toggleVisualizer} className={"w-16 top-4 left-4 absolute hover:rotate-1 hover:scale-102 hover:bg-blue-950 duration-150 cursor-pointer bg-blue-900 p-4 rounded-2xl text-amber-50 font-extrabold font- text-3xl"}>⇦</button>
-                <Visualizer midiBlob={midi} />
+                <Visualizer midi={midi} />
             </div>
 
         )
     }
       return (
         <div className={"appear h-screen flex flex-col justify-center p-4 bg-radial-[at_50%_50%] from-[#85a4e1] to-70% to-[#95b0e2]\""}>
-          <div className={"flex justify-center"}>
+            <div className="flex justify-center">
+                <img width={1000} className={"pb-16 top-1 drop-shadow-lg"} src={"/webscore.png"} />
+            </div>
+            <div className={"flex justify-center"}>
             <form className={"flex gap-4"}>
               <input value={url_input} onChange={e => setUrlInput(e.target.value)}
                   placeholder={"https://www.youtube.com/watch?v=[---------]"}

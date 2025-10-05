@@ -1,9 +1,11 @@
 const express = require('express');
 const fileRoutes = require('./routes/files');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.raw({
     type: 'audio/*',
