@@ -46,7 +46,7 @@ router.get('/url-to-mp3', async (req, res) => {
 });
 
 
-// curl -X POST http://localhost:3000/mp3-to-mid -F "mid_file=@autumn.mp3" --output midivid.mp4
+// curl -X POST http://localhost:3000/mp3-to-mid -F "mp3_file=@autumn.mp3" --output autumn.mid
 router.post('/mp3-to-mid', (req, res) => {
     const bb = busboy({ headers: req.headers });
     let fileBuffer = null;
@@ -76,13 +76,13 @@ router.post('/mp3-to-mid', (req, res) => {
                 const inputPath = path.join(__dirname, `../files/${mp3_name}`);
                 fs.writeFileSync(inputPath, fileBuffer);
                 mp3_name = mp3_name.substring(0, mp3_name.lastIndexOf('.'));
-                const result = await executeCommand(`bash ./export-mp4.sh ./files/${mp3_name}.mid`);
-                const filePath = path.join(__dirname, `../files/${mp3_name}.mp4`);
+                const result = await executeCommand(`bash ./mp3-to-midi.sh ./files/${mp3_name}.mid`);
+                const filePath = path.join(__dirname, `../files/${mp3_name}.mid`);
                 res.sendFile(filePath);
             }
             catch (err) {
-                console.error('Error executing export-mp4.sh:', err);
-                return res.status(500).json({ error: 'Failed to convert MIDI to MP4' });
+                console.error('Error executing mp3-to-midi.sh:', err);
+                return res.status(500).json({ error: 'Failed to convert MP3 to MIDI' });
             }
         } else {
             res.status(400).json({ error: 'No file received' });
