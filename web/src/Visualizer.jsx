@@ -4,7 +4,7 @@ import * as Tone from "tone"
 import PianoRoll from "./PianoRoll"
 import { buildPedalWindows, extendNotesWithPedal } from "./midiUtils"
 
-export default function App() {
+export default function Visualizer() {
   const [chart, setChart] = useState(null)
 
   // Visual sizing
