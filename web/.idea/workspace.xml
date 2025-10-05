@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2ba48347-f84e-42f4-aa19-be30b856ed42" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/autumn.mid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/export-mp4.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../api/export-mp4.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PianoRoll.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PianoRoll.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Visualizer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Visualizer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1759644745910</updated>
       <workItem from="1759644746965" duration="15713000" />
-      <workItem from="1759666691026" duration="10432000" />
+      <workItem from="1759666691026" duration="11787000" />
     </task>
     <servers />
   </component>

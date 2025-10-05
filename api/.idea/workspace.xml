@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="18f380ae-32cd-4685-9674-14b48013708b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autumn.mid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/export-mp4.sh" beforeDir="false" afterPath="$PROJECT_DIR$/export-mp4.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../web/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/PianoRoll.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/PianoRoll.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/Visualizer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/Visualizer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
       <workItem from="1759630352695" duration="29548000" />
       <workItem from="1759664718676" duration="249000" />
       <workItem from="1759666694666" duration="66000" />
-      <workItem from="1759666776155" duration="10133000" />
+      <workItem from="1759666776155" duration="11534000" />
     </task>
     <servers />
   </component>
