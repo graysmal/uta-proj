@@ -12,11 +12,34 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Generate Video
-./MIDIVisualizer --midi $1 --format MPEG4 --size 1280 720 --hide-window --bitrate 2 --preroll 1 --quality LOW_RES --show-pedal 0 --framerate 30 --export "$video_file"
+
+run_with_display(){
+    if [ -z "$DISPLAY" ]; then
+    #use virtual framebuffer
+        xvfb-run -s "-screen 0 1280x720x24" "$@"
+    else 
+        "$@"
+    fi
+        
+}
+
+#Generate video (headless)
+run_with_display ./MIDIVisualizer \
+    --midi "$input_file" \
+    --format MPEG4 \
+    --size 1280 720 \
+    --hide-window \
+    --bitrate 2 \
+    --preroll 1 \
+    --quality LOW_RES \
+    --show-pedal 0 \
+    --framerate 30 \
+    --export "$video_file"
+    
+
 
 # Generate Audio
 timidity $1 -Ow -o - | ffmpeg -i - -f mp3 -acodec libmp3lame -ab 192k "$audio_file"
 
 # Combine!
-ffmpeg -i "$video_file" -i "$audio_file" -filter_complex "[1:a]adelay=1250|1250[a]" -map 0:v -map "[a]" -c:v copy -c:a aac "files/${name}.mp4"
+ffmpeg -i "$video_file" -i "$audio_file" -filter_complex "[1:a]adelay=1250|1250[a]" -map 0:v -map "[a]" -c:v copy -c:a aac "${name}.mp4"
