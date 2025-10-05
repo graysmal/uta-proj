@@ -31,17 +31,18 @@ router.get('/url-to-mp3', async (req, res) => {
     // Run yt-dlp mp3 extract
     try  {
         let file_name = crypto.randomUUID();
-        const result = await executeCommand(`yt-dlp -x --audio-format mp3 -o "./files/${file_name}.mp3" ${url}`);
-        console.log(result)
+        const result = await executeCommand(`yt-dlp -x --audio-format mp3 -o "./files/${file_name}.mp3" --proxy "socks5h://100.102.74.90:1080" ${url}`);
+        console.log(result);
+
+        // Return mp3
+        const filePath = path.join(__dirname, `../files/${file_name}.mp3`);
+        res.sendFile(filePath);
     }
     catch (err) {
         console.error('Error executing yt-dlp:', err);
         return res.status(500).json({ error: 'Failed to process the URL' });
     }
 
-    // Return mp3
-    const filePath = path.join(__dirname, `../files/${file_name}.mp3`);
-    res.sendFile(filePath);
 });
 
 
