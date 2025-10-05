@@ -228,6 +228,7 @@ export default function PianoRoll({
         style={{
           display: "block",
           margin: "20px auto",
+          marginTop: "0",
           border: spiderMode ? "1px solid #3a3270" : "1px solid #aaa",
           background: spiderMode ? (spiderVariant === "red" ? "#12080b" : "#0f0e17") : "#fff"
         }}

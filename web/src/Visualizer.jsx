@@ -11,7 +11,7 @@ export default function Visualizer({ midi }) {
   // Visual sizing
   const [basePps, setBasePps] = useState(140)   // base pixels/sec (scaled by rate)
   const [keyW, setKeyW] = useState(20)
-  const [keyboardH, setKeyboardH] = useState(150)
+  const [keyboardH, setKeyboardH] = useState(100)
   const [dropTime, setDropTime] = useState(2.0) // seconds of pre-roll
 
   // Tempo
@@ -22,7 +22,7 @@ export default function Visualizer({ midi }) {
   const [isPlaying, setIsPlaying] = useState(false)
 
   // Theme
-  const [spiderMode, setSpiderMode] = useState(true)
+  const [spiderMode, setSpiderMode] = useState(false)
   const [spiderVariant, setSpiderVariant] = useState("red") // "neon" | "red"
   const [showWebs, setShowWebs] = useState(true)
   const [showSpiders, setShowSpiders] = useState(true)
@@ -223,18 +223,19 @@ export default function Visualizer({ midi }) {
           fontFamily: spiderMode ? spiderTheme.fontTitle : "sans-serif",
           letterSpacing: spiderMode ? "1px" : 0,
           marginTop: 8
-        }}
+        }} className={"text-2xl"}
       >
         {spiderMode ? "SPIDER-VERSE MIDI Visualizer" : "WEBSCORE"}
       </h2>
 
       <div style={{display:"flex",gap:16,flexWrap:"wrap",alignItems:"center",justifyContent:"center",marginBottom:12}}>
+        <div hidden>
         <label>
           <div style={{fontSize:12}}>Load MIDI</div>
           <input type="file" accept=".mid" onChange={handleFile} />
         </label>
 
-          <div hidden>
+
           <label>
             <div style={{fontSize:12}}>Base Speed (pps): {basePps}</div>
             <input type="range" min="40" max="320" step="5"
@@ -259,7 +260,7 @@ export default function Visualizer({ midi }) {
               value={dropTime} onChange={e=> setDropTime(+e.target.value)} />
           </label>
           </div>
-        <button onClick={() => setSpiderMode(s => !s)}>
+        <button className={"custom-button"} onClick={() => setSpiderMode(s => !s)}>
           {spiderMode ? "Theme: Spider-Verse ON" : "Theme: OFF"}
         </button>
         <select
@@ -288,21 +289,22 @@ export default function Visualizer({ midi }) {
 
       {/* Transport + Speed */}
       <div style={{ display:"flex", gap:12, justifyContent:"center", alignItems:"center", marginBottom:10 }}>
-        <button onClick={handlePlay} disabled={!isReady || isPlaying}>Play</button>
-        <button onClick={handlePause} disabled={!isReady || !isPlaying}>Pause</button>
-        <button onClick={handleStop} disabled={!isReady}>Stop</button>
+        <button className={"custom-button"} onClick={() => nudgeSpeed(-0.1)} disabled={!isReady}>– Slower</button>
+        <div style={{ minWidth: 110, textAlign: "center" }}><b>Speed: {rate.toFixed(2)}×</b></div>
+        <button className={"custom-button"} onClick={() => nudgeSpeed(+0.1)} disabled={!isReady}>Faster +</button>
+
 
         <div style={{ width: 1, height: 24, background: spiderMode ? "#302a55" : "#ddd", margin: "0 8px" }} />
 
-        <button onClick={() => nudgeSpeed(-0.1)} disabled={!isReady}>– Slower</button>
-        <div style={{ minWidth: 110, textAlign: "center" }}><b>Speed: {rate.toFixed(2)}×</b></div>
-        <button onClick={() => nudgeSpeed(+0.1)} disabled={!isReady}>Faster +</button>
+        <button className={"custom-button"} onClick={handlePause} disabled={!isReady || !isPlaying}>Pause</button>
+        <button className={"custom-button"} onClick={handlePlay} disabled={!isReady || isPlaying}>Play</button>
+        <button className={"custom-button"} onClick={handleStop} disabled={!isReady}>Stop</button>
 
         <div style={{ marginLeft: 8, display: "flex", gap: 6 }}>
-          <button onClick={() => setPresetSpeed(0.5)} disabled={!isReady}>0.5×</button>
-          <button onClick={() => setPresetSpeed(1.0)} disabled={!isReady}>1×</button>
-          <button onClick={() => setPresetSpeed(1.5)} disabled={!isReady}>1.5×</button>
-          <button onClick={() => setPresetSpeed(2.0)} disabled={!isReady}>2×</button>
+          <button className={"custom-button"} onClick={() => setPresetSpeed(0.5)} disabled={!isReady}>0.5×</button>
+          <button className={"custom-button"} onClick={() => setPresetSpeed(1.0)} disabled={!isReady}>1×</button>
+          <button className={"custom-button"} onClick={() => setPresetSpeed(1.5)} disabled={!isReady}>1.5×</button>
+          <button className={"custom-button"} onClick={() => setPresetSpeed(2.0)} disabled={!isReady}>2×</button>
         </div>
       </div>
 
