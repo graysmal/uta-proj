@@ -65,7 +65,7 @@ export default function App(){
         setLoading(false);
         setShowVisualizer(true);
         const formData = new FormData();
-        createTutorial(file);
+        createTutorial(blob);
     };
     if (loading) {
         return (
