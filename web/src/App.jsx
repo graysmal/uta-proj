@@ -14,7 +14,7 @@ export default function App(){
         e.preventDefault();
         setLoading(true);
         console.log(url_input);
-        const response = await fetch("http://162.243.246.187:3000/youtube-to-midi", {
+        const response = await fetch("/api/youtube-to-midi", {
             method: 'GET',
             headers: {
                 'url': url_input
