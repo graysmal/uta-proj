@@ -33,7 +33,7 @@ export default function App(){
         formData.append("mid_file", file); // Assuming `midi` is the file
         console.log("attempting to create tutorial");
         try {
-            const response = await fetch("http://localhost:3000/mid-to-mp4", {
+            const response = await fetch("/api/mid-to-mp4", {
                 method: "POST",
                 body: formData,
             });
